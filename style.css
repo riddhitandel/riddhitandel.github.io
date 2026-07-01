@@ -7,10 +7,16 @@ body {
 
 /* Background image */
 body {
-    background-image: url("images/background.jpg");
+    margin: 0;
+    padding: 0;
+
+    background-image: url("images/bg.jpg");
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Dark overlay like Zara style */
