@@ -1,0 +1,178 @@
+body {
+    margin: 0;
+    /* Removes default spacing around page */
+    background: #000;
+    /* Sets base background to pure black */
+    overflow: hidden;
+    /* Hides scrollbars caused by moving blobs */
+}
+
+.background {
+    position: fixed;
+    /* to lock the background */
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    /* Pushes background behind all content */
+}
+
+.hero,
+.content,
+.dashboard,
+.contact {
+    position: relative;
+    z-index: 2;
+}
+
+.blob {
+    position: absolute;
+    /* Allows free movement anywhere on screen */
+    width: 300px;
+    /* Size of glowing circle */
+    height: 300px;
+    /* Keeps it perfectly round */
+    border-radius: 50%;
+    /* Makes the shape circular */
+    filter: blur(120px);
+    /* Creates soft glowing effect */
+    opacity: 0.7;
+    /* Makes glow semi-transparent */
+    animation: float 10s infinite ease-in-out;
+    /* Makes blob move smoothly forever */
+}
+
+.blue {
+    background: #00aaff;
+    /* Blue glow color */
+    top: 20%;
+    /* Positions blob vertically */
+    left: 30%;
+    /* Positions blob horizontally */
+}
+
+.dark {
+    background: #0044ff;
+    /* Dark blue glow color */
+    bottom: 20%;
+    /* Positions blob near bottom */
+    right: 30%;
+    /* Positions blob on right side */
+    animation-delay: 2s;
+    /* Staggers animation so blobs don’t move together */
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(100px, -80px) scale(1.3);
+        /* stronger movement */
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+/* =====================================================
+   HERO SECTION
+   Full-screen landing page.
+===================================================== */
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    text-align: center;
+}
+
+
+/* Main title */
+.content h1 {
+    color: white;
+    font-size: 4rem;
+    letter-spacing: 8px;
+}
+
+/* Subtitle */
+.content p {
+    color: white;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+
+}
+
+/* Navigation */
+.menu a {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* =====================================================
+   DASHBOARD
+   Grid layout for homepage cards.
+===================================================== */
+
+.dashboard {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 25px;
+
+    width: 90%;
+    max-width: 1000px;
+
+    margin: 60px auto;
+}
+
+
+/* =====================================================
+   CARD
+   Interactive navigation panel.
+===================================================== */
+
+.card {
+
+    padding: 35px;
+
+    text-decoration: none;
+
+    color: white;
+
+    border: 1px solid rgba(56, 189, 248, .3);
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, .03);
+
+    backdrop-filter: blur(8px);
+
+    transition: .3s ease;
+}
+
+.card:hover {
+
+    transform: translateY(-8px);
+
+    border-color: #38BDF8;
+
+    box-shadow: 0 0 25px rgba(56, 189, 248, .5);
+}
+
+.card h2 {
+
+    margin-bottom: 10px;
+
+    letter-spacing: 3px;
+}
+
+.card p {
+
+    opacity: .7;
+}
