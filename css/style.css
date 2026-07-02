@@ -1,55 +1,67 @@
+/* =====================================================
+   CSS VARIABLES
+   Store reusable values in one place.
+   Change them here and they update everywhere.
+===================================================== */
+
+:root {
+    --bg-color: #000;
+    --text-color: #fff;
+    --accent-color: #38bdf8;
+
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(56, 189, 248, 0.3);
+
+    --border-radius: 0.75rem;
+
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+
+    --content-width: 1000px;
+}
+
+/* =====================================================
+   GLOBAL STYLES
+===================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    /* Makes width calculations much easier */
+}
+
+
 body {
     margin: 0;
-    /* Removes default spacing around page */
-    background: #000;
-    /* Sets base background to pure black */
-    overflow-y: auto;
-    overflow-x: auto;
-    font-size: 14px;
-    padding: 10px;
+    background: var(--bg-color);
+    color: var(--text-color);
+
+    font-family: 'Times New Roman', Times, sans-serif;
+    font-size: 1rem;
+
+    /* Prevent accidental sideways scrolling */
+    overflow-x: hidden;
+
+    /* Allow the page to grow naturally
+    overflow-y: auto; */
+
+    /* Responsive page padding
+       Uses 5% on smaller screens
+       Never exceeds 5rem on larger screens */
+    padding: min(5rem, 5%);
 }
 
+/* =====================================================
+   ANIMATED BACKGROUND
+===================================================== */
 
-/* Tablets (iPad, smaller laptops) */
-@media (max-width: 900px) {
-    .content h1 {
-        font-size: 2.8rem;
-        letter-spacing: 5px;
-    }
-    .content p {
-        font-size: 1.2rem;
-    }
-    .dashboard {
-        gap: 18px;
-        margin: 40px auto;
-    }
-}
-
-/* Phones */
-@media (max-width: 480px) {
-    .content h1 {
-        font-size: 1.9rem;
-        letter-spacing: 3px;
-    }
-    .content p {
-        font-size: 1rem;
-    }
-    .dashboard {
-        grid-template-columns: auto;
-        width: 85%;
-        gap: 15px;
-    }
-    .card {
-        padding: 24px;
-    }
-}
 .background {
     position: fixed;
-    /* to lock the background */
-    width: 100%;
-    height: 100%;
+    inset: 0;
     z-index: 0;
-    /* Pushes background behind all content */
+    overflow: hidden;
 }
 
 .hero,
@@ -62,153 +74,166 @@ body {
 
 .blob {
     position: absolute;
-    /* Allows free movement anywhere on screen */
-    width: 300px;
-    /* Size of glowing circle */
-    height: 300px;
-    /* Keeps it perfectly round */
+
+    width: 18rem;
+    height: 18rem;
+
     border-radius: 50%;
-    /* Makes the shape circular */
-    filter: blur(120px);
-    /* Creates soft glowing effect */
+
+    filter: blur(7rem);
+
     opacity: 0.7;
-    /* Makes glow semi-transparent */
-    animation: float 10s infinite ease-in-out;
-    /* Makes blob move smoothly forever */
+
+    animation: float 10s ease-in-out infinite;
 }
 
 .blue {
     background: #00aaff;
-    /* Blue glow color */
     top: 20%;
-    /* Positions blob vertically */
     left: 30%;
-    /* Positions blob horizontally */
 }
 
 .dark {
     background: #0044ff;
-    /* Dark blue glow color */
     bottom: 20%;
-    /* Positions blob near bottom */
     right: 30%;
-    /* Positions blob on right side */
     animation-delay: 2s;
-    /* Staggers animation so blobs don’t move together */
 }
 
 @keyframes float {
+
     0% {
         transform: translate(0, 0) scale(1);
     }
 
     50% {
-        transform: translate(100px, -80px) scale(1.3);
-        /* stronger movement */
+        transform: translate(6rem, -5rem) scale(1.3);
     }
 
     100% {
         transform: translate(0, 0) scale(1);
     }
+
 }
 
 /* =====================================================
    HERO SECTION
-   Full-screen landing page.
 ===================================================== */
 
 .hero {
-    min-height: auto;
+
+    min-height: 100vh;
+    /* Always fill at least the screen.
+       Expands automatically if content becomes taller. */
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     text-align: center;
-    padding: 40px 20px;
+
+    padding: var(--spacing-lg) var(--spacing-md);
 }
 
+/* =====================================================
+   INTRODUCTION
+===================================================== */
 
-/* Main title */
 .content h1 {
-    color: white;
-    font-size: 4rem;
-    letter-spacing: 8px;
+
+    color: var(--text-color);
+
+    /* Responsive font size
+       Never smaller than 2.5rem
+       Grows with screen width
+       Never larger than 4.5rem */
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+
+    letter-spacing: 0.3rem;
+
+    margin-bottom: 0.5rem;
 }
 
-/* Subtitle */
 .content p {
-    color: white;
-    font-size: 1.5rem;
-    letter-spacing: 3px;
 
-}
+    color: var(--text-color);
 
-/* Navigation */
-.menu a {
-    font-size: 1.1rem;
-    font-weight: 500;
+    /* Automatically scales without media queries */
+    font-size: clamp(1rem, 2vw, 1.5rem);
+
+    letter-spacing: 0.15rem;
+
+    margin-bottom: var(--spacing-lg);
 }
 
 /* =====================================================
    DASHBOARD
-   Grid layout for homepage cards.
 ===================================================== */
 
 .dashboard {
 
     display: grid;
 
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* Automatically creates columns
+       Cards never become smaller than 220px */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 
-    gap: 25px;
+    gap: 1.5rem;
 
-    width: 90%;
-    max-width: 1000px;
+    /* Cleaner than width + max-width */
+    width: min(90%, var(--content-width));
 
-    margin: 60px auto;
+    margin-inline: auto;
 }
-
 
 /* =====================================================
    CARD
-   Interactive navigation panel.
 ===================================================== */
 
 .card {
 
-    padding: 35px;
-
     text-decoration: none;
 
-    color: white;
+    color: var(--text-color);
 
-    border: 1px solid rgba(56, 189, 248, .3);
+    background: var(--card-bg);
 
-    border-radius: 12px;
+    border: 1px solid var(--card-border);
 
-    background: rgba(255, 255, 255, .03);
+    border-radius: var(--border-radius);
 
-    backdrop-filter: blur(8px);
+    /* Responsive padding */
+    padding: clamp(1.5rem, 3vw, 2rem);
 
-    transition: .3s ease;
+    backdrop-filter: blur(0.5rem);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .card:hover {
 
-    transform: translateY(-8px);
+    transform: translateY(-0.5rem);
 
-    border-color: #38BDF8;
+    border-color: var(--accent-color);
 
-    box-shadow: 0 0 25px rgba(56, 189, 248, .5);
+    box-shadow: 0 0 1.5rem rgba(56, 189, 248, 0.5);
 }
 
 .card h2 {
 
-    margin-bottom: 10px;
+    margin-top: 0;
 
-    letter-spacing: 3px;
+    margin-bottom: 0.75rem;
+
+    letter-spacing: 0.15rem;
 }
 
 .card p {
 
-    opacity: .7;
+    margin: 0;
+
+    opacity: 0.75;
 }
