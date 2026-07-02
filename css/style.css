@@ -3,8 +3,8 @@ body {
     /* Removes default spacing around page */
     background: #000;
     /* Sets base background to pure black */
-    overflow: hidden;
-    /* Hides scrollbars caused by moving blobs */
+    overflow-y: auto;
+    overflow-x: auto;
     font-size: 14px;
     padding: 10px;
 }
@@ -118,12 +118,12 @@ body {
 ===================================================== */
 
 .hero {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    height: 100vh;
     text-align: center;
+    padding: 40px 20px;
 }
 
 
