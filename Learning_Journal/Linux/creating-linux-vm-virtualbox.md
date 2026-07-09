@@ -21,8 +21,4 @@ The status showed Disabled.
 4. Enable virtualization
 5. Save changes
 
-![BIOS_Virtualization Setting](config_virtualization.jpeg)
-
-## What I Learned
-
-VirtualBox requires hardware virtualization to run virtual machines.
+![BIOS_Virtualization Setting](config_virtualization.jpeg) 
