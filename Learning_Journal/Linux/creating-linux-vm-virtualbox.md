@@ -21,10 +21,7 @@ The status showed Disabled.
 4. Enable virtualization
 5. Save changes
 
-![BIOS Virtualization Setting](BIOS.jpeg)
-![BIOS_Virtualization Setting](BIOShome.jped)
 ![BIOS_Virtualization Setting](config_virtualization.jpeg)
-![Virtualization Enabled](CPU_virtualization.png)
 
 ## What I Learned
 
